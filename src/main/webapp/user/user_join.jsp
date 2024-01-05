@@ -50,8 +50,8 @@
 				<tr>
 					<td>성별</td>
 					<td>
-						<input type="radio" name="gender"> 남자
-						<input type="radio" name="gender" checked> 여자
+						<input type="radio" name="gender" value="M"> 남자
+						<input type="radio" name="gender" value= "F" checked> 여자
 					</td>
 				</tr>
 				
@@ -65,6 +65,7 @@
 			<input type="button" value="회원가입" class="btn btn-default" onclick="joinConfirm()"> &nbsp;&nbsp;
 			-->
 			<input type="reset" value="취소" class="btn btn-default" onclick="">  
+			<div>${msg }</div> 
 			
 		</form>	
 	</div>
