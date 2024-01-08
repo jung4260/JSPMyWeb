@@ -20,7 +20,7 @@
 
 		<a href="update.user">[회원 정보 변경]</a>&nbsp;&nbsp;
 
-		<a href="">[회원 탈퇴]</a>
+		<a href="delete.user">[회원 탈퇴]</a>
 		</div>
 
 		<%@ include file= "../include/footer.jsp" %>
