@@ -15,33 +15,33 @@
 	<table border="1" width="500">
 		<tr>
 			<td width="20%">글번호</td>
-			<td width="30%"></td>
+			<td width="30%">${vo.bno}</td>
 			
 			<td width="20%">조회수</td>
-			<td width="30%"></td>
+			<td width="30%">${vo.hit }</td>
 		</tr>
 		<tr>
 			<td>작성자</td>
-			<td></td>
+			<td>${vo.writer }</td>
 			
 			<td>작성일</td>
-			<td ></td>
+			<td >${vo.regdate }</td>
 		</tr>
 		
 		<tr>
 			<td width="20%">글제목</td>
-			<td colspan="3"></td>
+			<td colspan="3">${vo.title }</td>
 		</tr>
 		<tr>
 			<td width="20%">글내용</td>
-			<td colspan="3" height="120px"></td>
+			<td colspan="3" height="120px">${vo.content }</td>
 		</tr>
 		
 		<tr>
 			<td colspan="4" align="center">
-				<input type="button" value="목록">&nbsp;&nbsp;
-				<input type="button" value="수정">&nbsp;&nbsp;
-				<input type="button" value="삭제">&nbsp;&nbsp;
+				<input type="button" value="목록" onclick = " location.href='list.board'; ">&nbsp;&nbsp;
+				<input type="button" value="수정" onclick = " location.href='modify.board?bno=${vo.bno} '; ">&nbsp;&nbsp;
+				<input type="button" value="삭제" >&nbsp;&nbsp;
 			</td>
 		</tr>
 	</table>

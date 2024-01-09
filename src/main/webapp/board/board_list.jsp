@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>    
 
 <%@ include file="../include/header.jsp" %>
 
@@ -18,15 +19,18 @@
 					<th>조회수</th>
 				</tr>
 			</thead>
-
+			
 			<tbody>
+			<c:forEach var="variable" items="${list }">
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
+					<td>${variable.bno }</td>
+					<td>${variable.writer }</td>
+					<td><a href="content.board?bno=${variable.bno }">${variable.title }</a></td>
+					<td><fmt:formatDate value="${variable.regdate }" pattern ="yyyy년 MM월 dd일 HH시 mm분 ss초" /></td>
+					<td>${variable.hit }</td>
 				</tr>
+			</c:forEach>
+			
 			</tbody>
 			
 			<tbody>

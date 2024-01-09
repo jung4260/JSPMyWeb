@@ -2,6 +2,9 @@ package com.myweb.board.model;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.ArrayList;
 
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
@@ -74,6 +77,132 @@ public class BoardDAO {
 		
 	}
 	
+	public ArrayList<BoardVO> getList(){
+		
+		ArrayList<BoardVO> list = new ArrayList <> ();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM BOARD ORDER BY BNO DESC";
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				int bno = rs.getInt("bno");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				String writer = rs.getString("writer");
+				int hit = rs.getInt("hit");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				
+				BoardVO vo = new BoardVO (bno, writer, title, content, hit, regdate);
+				list.add(vo);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+		
+		
+		return list;
+	}
 
-
+	//내용조회
+	public BoardVO getContent(String bno) {
+		
+		BoardVO vo = new BoardVO();
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM BOARD WHERE BNO = ?";
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				int bno2 = rs.getInt("bno");
+				String writer = rs.getString("writer");
+				String title = rs.getString("title");
+				String content = rs.getString("content");
+				int hit = rs.getInt("hit");
+				Timestamp regdate = rs.getTimestamp("regdate");
+				
+				vo.setBno(bno2);
+				vo.setWriter(writer);
+				vo.setTitle(title);
+				vo.setContent(content);
+				vo.setHit(hit);
+				vo.setRegdate(regdate);
+				
+				
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, rs);
+		}
+				
+		
+		
+		
+		return vo;
+	}
+	
+	
+	
+	public int update (String bno, String title, String content) {
+		
+		int result = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		
+		String sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, REGDATE = SYSDATE WHERE BNO = ?";
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			pstmt.setString(1, title);
+			pstmt.setString(2, content);
+			pstmt.setString(3, bno);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, null);
+		}
+		
+		
+		return result;
+	}
+	
+	
+	
+	
 }
