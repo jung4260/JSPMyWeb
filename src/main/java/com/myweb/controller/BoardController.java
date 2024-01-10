@@ -65,7 +65,9 @@ public class BoardController extends HttpServlet {
 			
 		} else if (path.equals("/board/content.board")) {
 			
-			BoardVO vo = service.getContent(request, response);
+			service.hitUpdate(request, response); //조회수
+			
+			BoardVO vo = service.getContent(request, response); //내용조회
 			request.setAttribute("vo", vo);
 			
 			request.getRequestDispatcher("board_content.jsp").forward(request, response);
@@ -107,7 +109,10 @@ public class BoardController extends HttpServlet {
 			}
 			
 			
+		}else if (path.equals("/board/delete.board")) {
 			
+			service.delete(request, response);
+			response.sendRedirect("list.board");
 			
 		}
 		

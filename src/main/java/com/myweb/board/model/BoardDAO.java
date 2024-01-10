@@ -180,11 +180,12 @@ public class BoardDAO {
 		PreparedStatement pstmt = null;
 		
 		
-		String sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, REGDATE = SYSDATE WHERE BNO = ?";
+		String sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ? WHERE BNO = ?";
 		
 		try {
 			
 			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, title);
 			pstmt.setString(2, content);
 			pstmt.setString(3, bno);
@@ -202,6 +203,58 @@ public class BoardDAO {
 		return result;
 	}
 	
+	public void delete(String bno)  {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "DELETE FROM BOARD WHERE BNO = ?";
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, null);
+		}
+		
+		
+		
+	}
+	
+	//조회수 작업
+	public void hitUpdate (String bno) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		
+		String sql = "UPDATE BOARD SET HIT = HIT + 1 WHERE BNO = ?";
+		
+		try {
+			
+			conn = dataSource.getConnection();
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, bno);
+			
+			pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			JdbcUtil.close(conn, pstmt, null);
+		}
+				
+		
+		
+		
+	}
 	
 	
 	

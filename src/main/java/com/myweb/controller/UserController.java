@@ -53,6 +53,7 @@ public class UserController extends HttpServlet {
 			request.getRequestDispatcher("user_join.jsp").forward(request, response);
 
 		}else if(path.equals("/user/login.user")) {
+			
 			request.getRequestDispatcher("user_login.jsp").forward(request, response);
 
 		}else if(path.equals("/user/joinForm.user") ) { //회원가입
