@@ -73,6 +73,8 @@ public class UserController extends HttpServlet {
 		}else if(path.equals("/user/loginForm.user")) {
 
 			UserVO vo = service.login(request, response);
+			
+			
 			if(vo != null) { //로그인 성공
 
 				//서블릿에서는 request.getSession 현제세션을 얻을 수 있습니다.

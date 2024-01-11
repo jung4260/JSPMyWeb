@@ -12,7 +12,7 @@
 			<tr>
 				<td>작성자</td>
 				<td>
-					<input type="text" name="writer" size="10" required>
+					<input type="text" name="writer" value="${sessionScope.user_id }" size="10" required readonly>
 				</td>
 			</tr>
 			<tr>

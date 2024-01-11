@@ -12,6 +12,7 @@
   
   <!-- 필터를 web.xml에 거어서 필터 체인 기능 하기  -->
   <!-- 등록된 필터 순차적으로 동작을 하게 됩니다. -->
+ <!-- 
   <filter>
   	<filter-name>chain1</filter-name>
   	<filter-class>com.myweb.util.filter.ChainFilter01</filter-class>
@@ -29,7 +30,7 @@
   	<filter-name>chain2</filter-name>
   	<url-pattern>/*</url-pattern>
   </filter-mapping>
-  
+   -->
   
   
   
